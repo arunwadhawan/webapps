@@ -139,9 +139,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
- ]
+#STATICFILES_DIRS = [
+#    BASE_DIR / "static",
+#]
 
 #So that DjDT Django Debug toolbar runs only for the internal IP's
 INTERNAL_IPS = [
@@ -153,3 +153,32 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Configure Logging
+
+LOGGING = {
+    'version': 1,
+
+    'loggers':{
+        'django':{
+            'handlers':['file'],
+            'level':'DEBUG'
+                }
+           },
+        'handlers':{
+        'file':{
+            'level':'INFO',
+            'class':'logging.FileHandler',
+            'filename':'./logs/debug.log',
+            'formatter':'simpleRe',
+                }
+                },
+    
+    'formatters':{
+        'simpleRe':{
+            'format':'{levelname} {asctime} {module} {pathname}{process:d} {thread:d} {name} {funcName}{message}',
+            'style':'{',
+                }
+           }
+    
+    }
